@@ -6,11 +6,29 @@
     </head>
     <body>
         <h1>Authors</h1>
-        <% authors.forEach(function(author) { %>
-            <p>
-                <%= author.name %>
-            </p>
-        <% }) %>
-        <a href="/authors/new">Add a new author</a>
+        <table>
+            <% authors.forEach(function(author) { %>
+                <tr>
+                    <td>
+                        <p>
+                            <%= author.name %>
+                        </p>
+                    </td>
+                    <td>
+                        <form method="post" action="/authors?_method=DELETE" >
+                            <input type="hidden" name="name" value="<%= author.id %>">
+                            <input type="submit" name="name" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+
+        <h3>Add a new author</h3>
+        <form action="/authors/new" method="post">
+            <label for="new">Enter a new author: </label>
+            <input type="text" name="new" value="">
+            <input type="submit" name="name" value="Submit">
+        </form>
     </body>
 </html>

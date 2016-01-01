@@ -16,12 +16,16 @@ app.get('/authors', function(req, res) {
     })
 })
 
-app.get('/authors/new', function(req, res) {
-    res.render('new');
+
+app.post('/authors/new', function(req, res) {
+    knex('authors').insert({name: req.body.new}).then(function() {
+        res.redirect('/authors');
+    })
 })
 
-app.post('/authors', function(req, res) {
-    knex('authors').insert({name: req.body.new}).then(function() {
+app.delete('/authors', function(req, res) {
+    console.log(req.body.name[0]);
+    knex('authors').where('id', '=', req.body.name[0]).first().del().then(function() {
         res.redirect('/authors');
     })
 })
