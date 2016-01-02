@@ -3,32 +3,45 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Authors</h1>
-        <table>
-            <% authors.forEach(function(author) { %>
-                <tr>
-                    <td>
-                        <p>
-                            <%= author.name %>
-                        </p>
-                    </td>
-                    <td>
-                        <form method="post" action="/authors?_method=DELETE" >
-                            <input type="hidden" name="name" value="<%= author.id %>">
-                            <input type="submit" name="name" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-            <% }) %>
-        </table>
-
-        <h3>Add a new author</h3>
-        <form action="/authors/new" method="post">
-            <label for="new">Enter a new author: </label>
-            <input type="text" name="new" value="">
-            <input type="submit" name="name" value="Submit">
-        </form>
+        <div class="container-fluid text-center">
+            <h1>Bookshelf</h1>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <h3>Authors</h3>
+                <table>
+                    <% authors.forEach(function(author) { %>
+                        <tr>
+                            <td>
+                                <p>
+                                    <%= author.name %>
+                                </p>
+                            </td>
+                            <td>
+                                <form method="post" action="/authors?_method=DELETE" >
+                                    <input type="hidden" name="name" value="<%= author.id %>">
+                                    <input type="submit" name="name" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h3>Add a new author</h3>
+                <form action="/authors/new" method="post">
+                    <label for="new">Enter a new author: </label>
+                    <input type="text" name="new" value="">
+                    <input type="submit" name="name" value="Add">
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
     </body>
 </html>
