@@ -17,10 +17,24 @@ router.post('/authors/new', function(req, res) {
 })
 
 router.delete('/authors', function(req, res) {
-    console.log(req.body.name[0]);
-    knex('authors').where('id', '=', req.body.name[0]).first().del().then(function() {
+    console.log(req.body.hiddenName);
+    knex('authors').where('id', '=', req.body.hiddenName).first().del().then(function() {
         res.redirect('/authors');
     })
 })
+
+router.get('/books/:id', function(req, res) {
+    console.log('here');
+    //eval(locus);
+    var authorID = parseInt(req.params.id);
+    console.log(authorID);
+    knex('authors').where('id', authorID).then(function(authors) {
+        //console.log({author: author});
+
+        res.render('../views/books', {authors: authors});
+    })
+
+})
+
 
 module.exports = router;

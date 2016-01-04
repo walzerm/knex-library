@@ -6,8 +6,8 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'bookauthors'
-  },
-  debug: true
+    },
+    debug: true
   },
 
   staging: {
