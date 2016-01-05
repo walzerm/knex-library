@@ -16,6 +16,14 @@
             <div class="col-md-4">
                 <h3>Books by <%= bookObj.author %></h3>
                 <table>
+                    <tr>
+                        <td>
+                            <h4>Book Title</h4>
+                        </td>
+                        <td>
+                            <h4>Book Catagory</h4>
+                        </td>
+                    </tr>
                     <% bookObj.books.forEach(function(book) { %>
 
 
@@ -26,19 +34,39 @@
                                 </p>
                             </td>
                             <td>
+                                <p>
+                                    <%= book.catagory %>
+                                </p>
+                            </td>
+                            <td>
                                 <form method="post" action="/authors/books/<%= bookObj.authorID %>?_method=DELETE" >
                                     <input type="hidden" name="hiddenName" value="<%= book.id %>">
                                     <input type="submit" name="name" value="Delete">
                                 </form>
                             </td>
+                            <td>
+                                <form method="post" action="/authors/books/edit/<%= book.id %>" >
+                                    <input type="hidden" name="hiddenName" value="<%= book.id %>">
+                                    <input type="submit" name="name" value="Edit">
+                                </form>
+                            </td>
                         </tr>
                             <% }) %>
                 </table>
+                <br>
+                <br>
+                <br>
+                <a href="/authors">Back to Authors</a>
             </div>
             <div class="col-md-4">
                 <h3>Add a new book</h3>
                 <form action="/authors/books/new/<%= bookObj.authorID %>" method="post">
+                    <label for="name">Title: </label>
                     <input type="text" name="new" value="">
+                    <br>
+                    <label for="catagory">Catagory: </label>
+                    <input type="text" name="catagory" value="">
+                    <br>
                     <input type="submit" name="name" value="Add">
                 </form>
             </div>

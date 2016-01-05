@@ -38,7 +38,7 @@ router.get('/authors/:id', function(req, res) {
 })
 
 router.post('/authors/books/new/:id', function(req, res) {
-    knex('books').insert({name: req.body.new, authorID: req.params.id}).then(function() {
+    knex('books').insert({name: req.body.new, authorID: req.params.id, catagory: req.body.catagory}).then(function() {
         var redirect = '/authors/' + req.params.id;
         res.redirect(redirect);
     })
@@ -47,6 +47,19 @@ router.post('/authors/books/new/:id', function(req, res) {
 router.delete('/authors/books/:id', function(req, res) {
     knex('books').where('id', '=', req.body.hiddenName).first().del().then(function() {
         res.redirect('/authors/' + req.params.id);
+    })
+})
+
+router.post('/authors/books/edit/:id', function(req, res) {
+    knex('books').where('id', req.params.id).then(function(book) {
+        console.log(book);
+        res.render('../views/edit', {book: book});
+    })
+})
+
+router.post('/authors/books/update', function(req, res) {
+    knex('books').where('id', req.body.id).update({name: req.body.name, catagory: req.body.catagory}).then(function(){
+        res.redirect('/authors/' + req.body.authorID);
     })
 })
 
