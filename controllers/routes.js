@@ -23,17 +23,29 @@ router.delete('/authors', function(req, res) {
     })
 })
 
-router.get('/books/:id', function(req, res) {
-    console.log('here');
-    //eval(locus);
+router.get('/authors/:id', function(req, res) {
     var authorID = parseInt(req.params.id);
-    console.log(authorID);
+    var bookObj = {};
     knex('authors').where('id', authorID).then(function(authors) {
-        //console.log({author: author});
-
-        res.render('../views/books', {authors: authors});
+        bookObj.author = authors[0].name;
+        bookObj.authorID = authors[0].id;
     })
 
+    knex('books').where('authorID', authorID).then(function(books) {
+        bookObj.books = books;
+        console.log(bookObj);
+        res.render('../views/books', {bookObj: bookObj});
+    })
+
+    //})
+
+})
+
+router.post('/authors/books/new/:id', function(req, res) {
+    knex('books').insert({name: req.body.new, authorID: req.params.id}).then(function() {
+        var redirect = '/authors/' + req.params.id;
+        res.redirect(redirect);
+    })
 })
 
 

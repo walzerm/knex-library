@@ -7,21 +7,22 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        <link rel="stylesheet" href="../public/style.css">
+        <link rel="stylesheet" href="../style.css">
     </head>
     <body>
         <div class="container-fluid text-center">
             <h1>Bookshelf</h1>
             <div class="col-md-2"></div>
             <div class="col-md-4">
-                <h3>Books by <%= authors[0].name %></h3>
+                <h3>Books by <%= bookObj.author %></h3>
+                <table>
+                    <% bookObj.books.forEach(function(book) { %>
 
-            <!--    <table>
 
                         <tr>
                             <td>
                                 <p>
-
+                                    <%= book.name %>
                                 </p>
                             </td>
                             <td>
@@ -31,12 +32,12 @@
                                 </form>
                             </td>
                         </tr>
-
-                </table> -->
+                            <% }) %>
+                </table>
             </div>
             <div class="col-md-4">
                 <h3>Add a new book</h3>
-                <form action="/authors/new" method="post">
+                <form action="/authors/books/new/<%= bookObj.authorID %>" method="post">
                     <input type="text" name="new" value="">
                     <input type="submit" name="name" value="Add">
                 </form>
