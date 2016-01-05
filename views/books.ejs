@@ -26,8 +26,8 @@
                                 </p>
                             </td>
                             <td>
-                                <form method="post" action="/authors?_method=DELETE" >
-                                    <input type="hidden" name="name" value="">
+                                <form method="post" action="/authors/books/<%= bookObj.authorID %>?_method=DELETE" >
+                                    <input type="hidden" name="hiddenName" value="<%= book.id %>">
                                     <input type="submit" name="name" value="Delete">
                                 </form>
                             </td>
