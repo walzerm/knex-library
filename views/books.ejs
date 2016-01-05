@@ -15,9 +15,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-4">
                 <h3>Books by <%= authors[0].name %></h3>
-                <% authors.forEach(function(author) { %>
-                    <%= author.name %>
-                <% }) %>
+
             <!--    <table>
 
                         <tr>
@@ -39,7 +37,6 @@
             <div class="col-md-4">
                 <h3>Add a new book</h3>
                 <form action="/authors/new" method="post">
-                    <label for="new">Enter a new book: </label>
                     <input type="text" name="new" value="">
                     <input type="submit" name="name" value="Add">
                 </form>
